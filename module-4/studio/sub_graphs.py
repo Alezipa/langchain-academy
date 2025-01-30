@@ -101,3 +101,23 @@ entry_builder.add_edge("failure_analysis", END)
 entry_builder.add_edge("question_summarization", END)
 
 graph = entry_builder.compile()
+
+
+# # Dummy logs
+# question_answer = Log(
+#     id="1",
+#     question="How can I import ChatOllama?",
+#     answer="To import ChatOllama, use: 'from langchain_community.chat_models import ChatOllama.'",
+# )
+
+# question_answer_feedback = Log(
+#     id="2",
+#     question="How can I use Chroma vector store?",
+#     answer="To use Chroma, define: rag_chain = create_retrieval_chain(retriever, question_answer_chain).",
+#     grade=0,
+#     grader="Document Relevance Recall",
+#     feedback="The retrieved documents discuss vector stores in general, but not Chroma specifically",
+# )
+
+# raw_logs = [question_answer,question_answer_feedback]
+# graph.invoke({"raw_logs": raw_logs})

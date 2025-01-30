@@ -89,3 +89,29 @@ builder.add_edge("search_wikipedia", "generate_answer")
 builder.add_edge("search_web", "generate_answer")
 builder.add_edge("generate_answer", END)
 graph = builder.compile()
+
+# How to print results in the console?----------
+
+# result = graph.invoke({"question": "How were Nvidia's Q1 2025 earnings"})
+# print(result['answer'].content)
+
+
+# using langstudio
+# import platform
+
+# if 'google.colab' in str(get_ipython()) or platform.system() != 'Darwin':
+#     raise Exception("Unfortunately LangGraph Studio is currently not supported on Google Colab or requires a Mac")
+
+# from langgraph_sdk import get_client
+# client = get_client(url="http://localhost:61465")
+
+# thread = await client.threads.create()
+# input_question = {"question": "How were Nvidia Q2 2024 earnings?"}
+# async for event in client.runs.stream(thread["thread_id"], 
+#                                       assistant_id="parallelization", 
+#                                       input=input_question, 
+#                                       stream_mode="values"):
+#     # Check if answer has been added to state  
+#     answer = event.data.get('answer', None)
+#     if answer:
+#         print(answer['content'])

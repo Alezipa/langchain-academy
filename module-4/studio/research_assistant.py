@@ -380,7 +380,7 @@ def initiate_all_interviews(state: ResearchGraphState):
 
     # Check if human feedback
     human_analyst_feedback=state.get('human_analyst_feedback','approve')
-    if human_analyst_feedback.lower() != 'approve':
+    if human_analyst_feedback.lower() != 'approve':  ###only difference for working in Studio
         # Return to create_analysts
         return "create_analysts"
 
