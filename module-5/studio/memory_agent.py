@@ -20,6 +20,8 @@ from langgraph.store.memory import InMemoryStore
 
 import configuration
 
+
+
 ## Utilities 
 
 # Inspect the tool calls for Trustcall
@@ -229,6 +231,10 @@ def task_mAIstro(state: MessagesState, config: RunnableConfig, store: BaseStore)
         instructions = memories[0].value
     else:
         instructions = ""
+
+    # Retrieve user preferences (from vectorstore)
+    results = vectorstore.similarity_search(f"Client: {user_id}", k=1)
+    client_info = results[0].page_content if results else "No client data found."
     
     system_msg = MODEL_SYSTEM_MESSAGE.format(user_profile=user_profile, todo=todo, instructions=instructions)
 
